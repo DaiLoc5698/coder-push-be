@@ -74,11 +74,11 @@ router.post('/user/like', (req, res) => {
     const currentUser = req.body.currentUser;
     const likedUserId = req.body.likedUserId;
 
-    const listMatches = currentUser.matches;
+    const listMatches = [...currentUser.matches];
     listMatches.push(likedUserId);
     const listMatchesUniq = [...new Set(listMatches)];
-
-    const newMatch = listMatches.length === listMatchesUniq.length
+    
+    const newMatch = currentUser.matches.length < listMatchesUniq.length
 
     User.findByIdAndUpdate(
         { _id: currentUser._id },
