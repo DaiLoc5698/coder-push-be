@@ -1,8 +1,8 @@
 # coder-push-be
 
 # Env
-  node: 14.17.3
-  yarn: 1.22.17
+  - node: 14.17.3
+  - yarn: 1.22.17
   
 # How to start
 
