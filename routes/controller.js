@@ -78,13 +78,16 @@ router.post('/user/like', (req, res) => {
     listMatches.push(likedUserId);
     const listMatchesUniq = [...new Set(listMatches)];
 
+    const newMatch = listMatches.length === listMatchesUniq.length
+
     User.findByIdAndUpdate(
         { _id: currentUser._id },
         { $set: { matches: listMatchesUniq } })
         .then(doc => {
             res.send({
               user: doc,
-              success: true
+              success: true,
+              newMatch: newMatch
             })
         })
         .catch(err => {
